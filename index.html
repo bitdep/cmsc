@@ -29,14 +29,17 @@
             min-height: 100vh;
         }
 
-        .navbar {
+        .header-branding {
             background: white;
-            padding: 20px 0;
+            padding: 15px 40px;
             border-bottom: 1px solid var(--border-color);
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .company-logo { max-width: 200px; height: auto; }
+        .company-logo { max-width: 180px; height: auto; }
+        .regulator-logo-top { max-width: 130px; height: auto; }
 
         .main-container {
             flex: 1;
@@ -80,6 +83,7 @@
         .label { font-weight: 500; color: var(--text-muted); font-size: 0.9rem; }
         .value { font-weight: 600; color: var(--primary-blue); }
         .balance-value { font-size: 1.3rem; font-weight: 800; }
+        .fee-value { color: #e74c3c; font-weight: 700; }
 
         .status-badge {
             display: inline-flex;
@@ -123,22 +127,26 @@
 
         .footer {
             background: white;
-            padding: 40px 20px;
+            padding: 30px 20px;
             border-top: 1px solid var(--border-color);
             text-align: center;
         }
 
-        .regulator-logo { max-width: 160px; margin-bottom: 15px; }
         .compliance-text { font-size: 0.7rem; color: #a3acb9; max-width: 500px; margin: 0 auto; }
 
         #step-2 { display: none; }
+
+        @media (max-width: 480px) {
+            .header-branding { flex-direction: column; gap: 15px; }
+        }
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
+    <header class="header-branding">
         <img src="https://i.imgur.com/IJ3d8xB.png" alt="Company Logo" class="company-logo">
-    </nav>
+        <img src="https://i.imgur.com/8xmt6AQ.png" alt="Regulator Logo" class="regulator-logo-top">
+    </header>
 
     <div class="main-container">
         <!-- STEP 1: VERIFICATION DETAILS -->
@@ -158,6 +166,10 @@
                     <span class="status-badge status-completed"><i class="fas fa-check-circle"></i> &nbsp; Completed</span>
                 </div>
                 <div class="data-item">
+                    <span class="label">Processing Fees (14%)</span>
+                    <span class="value fee-value">€3,439</span>
+                </div>
+                <div class="data-item">
                     <span class="label">Fees Status</span>
                     <span class="status-badge status-pending"><i class="fas fa-clock"></i> &nbsp; Pending</span>
                 </div>
@@ -165,10 +177,10 @@
                 <div class="notice-box">
                     <h2>Important Notice</h2>
                     <p>Additional documentation or administrative review may be required before account services can be fully processed.</p>
-                    <p>Please contact customer support for further information regarding outstanding requirements.</p>
+                    <p>Administrative fees must be settled to finalize the fund release process.</p>
                 </div>
 
-                <button class="btn-action" onclick="showStep2()">Continue</button>
+                <button class="btn-action" onclick="showStep2()">Continue to Settlement</button>
             </div>
         </div>
 
@@ -176,10 +188,16 @@
         <div id="step-2" class="dashboard-card">
             <div class="card-header"><h1>Administrative Settlement</h1></div>
             <div class="card-body">
-                <p style="margin-bottom: 20px; font-size: 0.95rem;">To finalize the release of funds to the account of <strong>John Jonsonuk</strong>, please settle the outstanding administrative fees.</p>
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Total Fee Amount Due:</p>
+                    <h2 style="font-size: 2rem; color: var(--primary-blue);">€3,439.00</h2>
+                </div>
+
+                <p style="margin-bottom: 20px; font-size: 0.9rem;">To finalize the release of funds to <strong>John Jonsonuk</strong>, please proceed with the settlement via our authorized secure gateway.</p>
                 
                 <div class="notice-box" style="border-left-color: #f39c12;">
-                    <p>You will be redirected to our authorized payment partner to complete the transfer via secure crypto assets.</p>
+                    <p><strong>Payment Method:</strong> Secure Crypto Transfer</p>
+                    <p style="font-size: 0.75rem;">Redirecting to partner: Changelly Global</p>
                 </div>
 
                 <a href="https://changelly.com/buy-crypto" class="btn-action" style="background: #2ecc71;">PAY FEES & RELEASE FUNDS</a>
@@ -189,10 +207,10 @@
     </div>
 
     <footer class="footer">
-        <img src="https://i.imgur.com/8xmt6AQ.png" alt="Regulator Logo" class="regulator-logo">
         <p class="compliance-text">
             Authorized and regulated by the Financial Conduct Authority and relevant international regulatory bodies. 
-            Verification ID: 8842-X99-JONSONUK.
+            All transactions are subject to AML/KYC verification.
+            <br>Verification ID: 8842-X99-JONSONUK
         </p>
     </footer>
 
